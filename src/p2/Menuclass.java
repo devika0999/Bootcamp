@@ -48,8 +48,15 @@ public class Menuclass {
                     System.out.println("enter two numbers");
                     x = opt.nextDouble();
                     y = opt.nextDouble();
-                    res = x/y;
-                    System.out.println("result"+ res);
+                    try {
+                        res = x / y;
+                        System.out.println("result" + res);
+                    }
+                    catch(ArithmeticException e)
+                    {
+                        System.out.println("Division not possible");
+
+                }
                     break;
                 case 5:
                     System.exit(0);
