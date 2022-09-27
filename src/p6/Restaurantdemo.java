@@ -1,4 +1,6 @@
 package p6;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Restaurantdemo {
@@ -8,18 +10,29 @@ public class Restaurantdemo {
         int sum = 0;
         String order = "";
         int quantity;
+        String name;
 
         FoodItems obj = new FoodItems(10, 15, 140, 80, 50);
         FoodItems obj1 = new FoodItems(15, 20, 145, 85, 55);
+
+        HashMap<String,String> map = new  HashMap<String,String>();
+
+
+        ArrayList<String> tnslist= new ArrayList<String>();
+
+
         Scanner sc = new Scanner(System.in);
-        while (true) {
+
+        outer: while (true) {
             System.out.println("_______MENU______");
-            System.out.println("1.Dining          ");
-            System.out.println("2 Take Away      ");
+            System.out.println("1.Dine in         ");
+            System.out.println("2. Take Away      ");
+            System.out.println("3. view transactions     ");
+            System.out.println("4. Exit      ");
             ch1 = sc.nextInt();
             switch (ch1) {
                 case 1:
-                    while (true) {
+                     while (true) {
                         System.out.println("_______MENU______");
                         System.out.println("1.TEA            " + obj.getTea());
                         System.out.println("2.COFFEE         " + obj.getCoffee());
@@ -77,10 +90,27 @@ public class Restaurantdemo {
                                 System.out.println("______________");
                                 System.out.println("total" + "\t" + sum);
                                 System.out.println("______________");
+                                order="";
+
+                                System.out.println("Enter customer name");
+                                name=sc.next();
+
+                                map.put("custname",name);
+                                map.put("amnt",String.valueOf(sum));
+                                map.put("mode","dine in");
+                                tnslist.add(String.valueOf(map));
+
+
+                                sum=0;
+
                                 break;
 
+
+
+
                             case 7:
-                                break;
+                                continue outer;
+
 
 
                         }
@@ -145,15 +175,30 @@ public class Restaurantdemo {
                                             System.out.println("______________");
                                             System.out.println("total" + "\t" + sum);
                                             System.out.println("______________");
-                                            break;
+                                            order="";
 
-                                        case 7:
+                                            System.out.println("Enter customer name");
+                                            name=sc.next();
+
+                                            map.put("custname",name);
+                                            map.put("amnt",String.valueOf(sum));
+                                            map.put("mode","takeaway");
+                                            tnslist.add(String.valueOf(map));
+
+
+                                            sum=0;
+
                                             break;
+                                        case 7:
+                                            continue outer;
 
                                     }
                                 }
+                                   case 3:
 
-                                    case 3:
+                                       System.out.println(tnslist);
+                                    break;
+                                    case 4:
                                         System.exit(0);
                                 }
                         }
